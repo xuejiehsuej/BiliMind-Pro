@@ -17,7 +17,7 @@ A browser extension for digital mindfulness, helping users reflect on videos wat
 | 深度记录弹窗 | 思绪日志统计 | 主题切换面板 |
 | :--- | :--- | :--- |
 | ![记录弹窗预览](https://github.com/xuejiehsuej/BiliMind-Pro/raw/main/screenshots/modal.png) | ![日志统计预览](https://github.com/xuejiehsuej/BiliMind-Pro/raw/main/screenshots/options.png) | ![设置面板预览](https://github.com/xuejiehsuej/BiliMind-Pro/raw/main/screenshots/popup.png) |
-*(注：请在仓库中创建 screenshots 文件夹并上传图片，或替换为实际链接)*
+
 
 ## 🚀 安装指南
 
