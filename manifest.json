@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "BiliMind Pro",
+  "version": "1.2",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.bilibili.com/video/*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> <style>
+        body { width: 220px; padding: 15px; font-family: -apple-system, sans-serif; background: #fff; color: #333; }
+        .title { font-size: 16px; font-weight: 700; margin-bottom: 20px; color: #000; }
+        .item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+        .label { font-size: 13px; color: #666; }
+        select { padding: 5px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 12px; }
+        .btn-full { 
+            width: 100%; padding: 10px; background: #007AFF; color: white; 
+            border: none; border-radius: 10px; cursor: pointer; font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .btn-full:active { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="title">BiliMind 设置中心</div>
+    <div class="item">
+        <span class="label">界面视觉主题</span>
+        <select id="themeSelector">
+            <option value="theme-liquid">液态玻璃</option>
+            <option value="theme-transparent">纯净白色</option>
+            <option value="theme-dark">暗夜深邃</option>
+        </select>
+    </div>
+    <button class="btn-full" id="goOptions">查看历史思绪日志</button>
+    <script src="popup.js"></script>
+</body>
+</html>

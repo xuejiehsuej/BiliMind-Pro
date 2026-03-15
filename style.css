@@ -1,0 +1,271 @@
+:root { --accent: #007AFF; }
+
+/* ============================================================
+   1. 悬浮按钮 (防抖热区方案) 
+   解决原理：通过固定不动的 wrapper 承载 hover 事件，防止按钮位移导致鼠标丢失
+   ============================================================ */
+
+/* 固定不动的透明热区容器 */
+#bm-float-wrapper {
+    position: fixed !important;
+    bottom: 80px !important;
+    left: 0 !important;
+    width: 140px !important; /* 宽度覆盖按钮展开后的物理范围 */
+    height: 100px !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    align-items: center !important;
+    background: transparent !important; /* 隐藏热区 */
+    cursor: pointer !important;
+}
+
+/* 按钮初始状态 */
+#bm-float-btn {
+    width: 75px !important; 
+    height: 75px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(15px) !important;
+    border-radius: 24px !important;
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    /* 彻底防抖：使用 transform 隐藏约 66%，露出约 25px，不再改动 left 坐标 */
+    transform: translateX(-50px) !important; 
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    pointer-events: auto !important; /* 让点击穿透到 wrapper 或通过 JS 处理 */
+}
+
+/* 鼠标进入热区容器后，按钮平滑滑出 */
+#bm-float-wrapper:hover #bm-float-btn {
+    transform: translateX(20px) !important;
+    background: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+#bm-float-btn span { 
+    font-size: 32px !important; 
+    user-select: none !important; 
+	
+}
+
+/* ============================================================
+   2. 弹窗与卡片主题 (高可读性优化)
+   ============================================================ */
+
+#bm-modal { 
+    position: fixed !important; 
+    top: 0; left: 0; width: 100%; height: 100%; 
+    z-index: 2147483647 !important; 
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+}
+
+.bm-card { 
+    width: 440px !important; 
+    padding: 35px !important; 
+    border-radius: 35px !important; 
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3) !important; 
+    transition: all 0.3s ease !important; 
+}
+
+/* 主题：液态玻璃 */
+.theme-liquid .bm-card {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(40px) saturate(250%) brightness(1.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 主题：纯净透明 (85% 不透明度确保文字清晰) */
+.theme-transparent .bm-card {
+    background: rgba(255, 255, 255, 0.85) !important; 
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #1d1d1f !important;
+}
+
+/* 主题：暗夜深邃 */
+.theme-dark .bm-card {
+    background: rgba(28, 28, 30, 0.8) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+.theme-dark .bm-header h2 { color: #ffffff !important; }
+.theme-dark #bm-v-title { color: rgba(255, 255, 255, 0.6) !important; }
+
+/* ============================================================
+   3. 日志记录列表与统计
+   ============================================================ */
+
+.log-item { 
+    background: #ffffff !important; 
+    padding: 25px !important; 
+    border-radius: 20px !important; 
+    margin-bottom: 20px !important; 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04) !important; 
+    border: 1px solid #f0f0f2 !important;
+    transition: transform 0.2s ease !important;
+}
+.log-item:hover { 
+    transform: translateY(-3px) !important; 
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important; 
+}
+
+/* 热力图网格 */
+.heatmap { 
+    display: flex !important; 
+    gap: 8px !important; 
+    margin-top: 15px !important; 
+}
+.heat-cell { 
+    flex: 1 !important; 
+    aspect-ratio: 1 !important; 
+    border-radius: 6px !important; 
+    background: #e9e9eb !important; 
+    position: relative !important;
+    transition: transform 0.2s !important;
+}
+.heat-cell:hover { 
+    transform: scale(1.1) !important; 
+    z-index: 10 !important; 
+}
+
+/* ============================================================
+   4. UI 细节与交互元素
+   ============================================================ */
+
+.bm-title-container { 
+    max-height: 80px !important; 
+    overflow-y: auto !important; 
+    margin-bottom: 25px !important; 
+    border-left: 4px solid var(--accent) !important; 
+    padding-left: 12px !important; 
+}
+
+#bm-v-title { 
+    font-size: 15px !important; 
+    font-weight: 600 !important; 
+    line-height: 1.5 !important; 
+    margin: 0 !important; 
+}
+
+.bm-tags { 
+    display: flex !important; 
+    flex-wrap: wrap !important; 
+    gap: 8px !important; 
+    margin-bottom: 22px !important; 
+}
+
+.bm-tag { 
+    padding: 8px 16px !important; 
+    border-radius: 12px !important; 
+    font-size: 13px !important; 
+    cursor: pointer !important; 
+    background: rgba(0, 0, 0, 0.06) !important; 
+    transition: 0.2s !important; 
+}
+.bm-tag.active { 
+    background: var(--accent) !important; 
+    color: white !important; 
+    box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3) !important; 
+}
+
+#bm-note { 
+    width: 100% !important; 
+    height: 100px !important; 
+    border-radius: 18px !important; 
+    border: none !important; 
+    background: rgba(0, 0, 0, 0.05) !important; 
+    padding: 15px !important; 
+    font-size: 14px !important; 
+    margin-bottom: 25px !important; 
+    outline: none !important; 
+}
+
+.bm-footer { 
+    display: flex !important; 
+    gap: 12px !important; 
+}
+.bm-footer button { 
+    flex: 1 !important; 
+    padding: 16px !important; 
+    border: none !important; 
+    border-radius: 18px !important; 
+    font-weight: 600 !important; 
+    cursor: pointer !important; 
+}
+
+#bm-save { 
+    background: var(--accent) !important; 
+    color: white !important; 
+}
+#bm-close { 
+    background: rgba(0, 0, 0, 0.08) !important; 
+}
+
+/* Toast 提示 */
+#bm-toast {
+    position: fixed !important; 
+    top: 12% !important; 
+    left: 50% !important; 
+    transform: translate(-50%, -20px) !important;
+    background: rgba(0, 0, 0, 0.85) !important; 
+    color: white !important; 
+    padding: 14px 28px !important; 
+    border-radius: 16px !important;
+    font-weight: 500 !important; 
+    opacity: 0 !important; 
+    z-index: 2147483647 !important; 
+    transition: all 0.4s ease !important;
+}
+#bm-toast.show { 
+    opacity: 1 !important; 
+    transform: translate(-50%, 0) !important; 
+}
+/* === 选项页统计逻辑补丁 === */
+.stats-grid { 
+    display: grid !important; 
+    grid-template-columns: 240px 1fr !important; 
+    gap: 30px !important; 
+    margin-bottom: 35px !important; 
+}
+
+.ring-container, .heat-container { 
+    background: white !important; 
+    padding: 25px !important; 
+    border-radius: 28px !important; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04) !important; 
+}
+
+/* 圆环渲染核心 */
+.progress-ring { 
+    width: 120px !important; 
+    height: 120px !important; 
+    border-radius: 50% !important; 
+    background: conic-gradient(var(--accent) var(--p), #f2f2f7 0) !important; 
+    margin: 0 auto 15px !important; 
+    position: relative !important; 
+}
+.progress-ring::after { 
+    content: "" !important; 
+    position: absolute !important; 
+    inset: 18px !important; 
+    background: white !important; 
+    border-radius: 50% !important; 
+}
+
+/* 热力图方块渲染 */
+.heatmap-30 { 
+    display: grid !important; 
+    grid-template-columns: repeat(10, 1fr) !important; 
+    gap: 8px !important; 
+}
+.h-cell { 
+    aspect-ratio: 1 !important; 
+    border-radius: 6px !important; 
+    background: #ebedf0 ; 
+    transition: transform 0.2s !important; 
+}

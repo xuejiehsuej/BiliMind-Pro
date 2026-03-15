@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BiliMind 思绪日志</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main" style="width: 900px; margin: 0 auto; padding: 40px;">
+        <div class="controls" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h1 style="font-size: 28px; font-weight: 700;">我的思绪日志</h1>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <label style="font-size: 14px; color: #666; cursor: pointer;">
+                    <input type="checkbox" id="hideFragments" checked> 隐藏自动记录的碎片
+                </label>
+                <button id="exportBtn" style="background:var(--accent); color:white; border:none; padding:12px 24px; border-radius:12px; cursor:pointer; font-weight:600;">导出 CSV</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="ring-container">
+                <div class="progress-ring" id="thinkingRing" style="--p: 0%"></div>
+                <div style="font-size: 14px; color: #1d1d1f; font-weight: 600;">今日思考占比</div>
+                <div id="ringText" style="font-size: 11px; color: #8e8e93; margin-top: 5px;">0% 专注度</div>
+            </div>
+            
+            <div class="heat-container">
+                <h4 style="margin: 0 0 15px 0; font-size: 14px;">近 30 日思绪活跃趋势</h4>
+                <div class="heatmap-30" id="activityHeatmap"></div>
+                <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 11px; color: #999;">
+                    <span>30天前</span>
+                    <span>今天</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="logList"></div>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>
